@@ -1,0 +1,19 @@
+# QUESTION 3
+Box filter'ın geleneksel implementasyonunu düşünürsek w=3 için;
+9 adet çarpma (w^2)
+9 adet toplama (w^2)
+1 adet bölme işlemi yapmak zorundayız. 
+Integral image kullanımında ise istenen noktanın;
+output'ta solunda bulunan nokta(varsa) + output'ta üstünde bulunan nokta(varsa) + image'daki kendisi - output'ta sol üstünde bulunan nokta(varsa) 
+formülü uygulanmalıdır. Görüldüğü gibi 2 toplama ve 1 çıkartma işlemi yeterlidir.
+Hocam yukarıda anlattığım formül bir png dosyasında görsel olarak bulunmakta. X için box filter uygularken;
+(A - B - C + D) / kernel_size**2 formülü kullanılır. 
+Böylece o alandaki sum bulunur ve kernel_size' ın karesine bölünür.
+
+
+
+
+# QUESTION 4
+Avantaj olarak yapılan işlem sayısındaki azalma göze çarpıyor. Hesaplama yaparken kullandığımız değerler zaten daha önceden hesaplanan ve output'a kaydedilen değerler.
+Ancak dezavantaj kısmına gelirsek; uint8 veri türü 8 bit ile temsil edilebilen integer değerlerine karşılık olarak kullanılır. Ancak integral image metodunda pixellerde
+bulunan değerler çok büyük tam sayılar olabileceği için bu veri türünü kullanmak yanlış sonuçlar doğurur. Bu yüzden image'ı gösterebilmek daha kompleks hale gelir.
